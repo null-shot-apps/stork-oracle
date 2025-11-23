@@ -84,7 +84,7 @@ export default function RecentBets() {
             <div className="flex justify-between items-start mb-2">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-mono text-gray-400">{bet.user}</span>
-                <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded">
+                <span className="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded">
                   {bet.token}
                 </span>
               </div>
@@ -111,3 +111,4 @@ export default function RecentBets() {
     </div>
   );
 }
+

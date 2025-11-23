@@ -90,10 +90,11 @@ export default function Leaderboard() {
       </div>
       
       <div className="mt-4 pt-4 border-t border-white/20 text-center">
-        <button className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
+        <button className="text-orange-400 hover:text-orange-300 text-sm font-medium transition-colors">
           View Full Leaderboard →
         </button>
       </div>
     </div>
   );
 }
+

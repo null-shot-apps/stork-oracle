@@ -127,12 +127,12 @@ export default function PredictionMarket() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-orange-900 to-slate-900 text-white">
       {/* Header */}
       <header className="border-b border-white/10 bg-black/20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
               Token Launch Predictions
             </h1>
             <div className="flex items-center gap-4">
@@ -150,7 +150,7 @@ export default function PredictionMarket() {
                 >
                   Sign Out
                 </button>
-                <button className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-medium transition-colors">
+                <button className="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-lg font-medium transition-colors">
                   Connect Wallet
                 </button>
               </div>
@@ -163,7 +163,7 @@ export default function PredictionMarket() {
         {/* Custom Token Input */}
         <div className="mb-8">
           <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
               Create Prediction Market
             </h2>
             <p className="text-gray-300 mb-4">
@@ -175,13 +175,13 @@ export default function PredictionMarket() {
                 value={customTokenInput}
                 onChange={(e) => setCustomTokenInput(e.target.value)}
                 placeholder="0x... contract address or token symbol (e.g., PEPE, DOGE)"
-                className="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                className="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
                 onKeyPress={(e) => e.key === 'Enter' && handleCustomTokenSubmit()}
               />
               <button
                 onClick={handleCustomTokenSubmit}
                 disabled={!customTokenInput.trim()}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-medium transition-all"
+                className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-medium transition-all"
               >
                 Create Market
               </button>
@@ -212,7 +212,7 @@ export default function PredictionMarket() {
                 onClick={() => setSelectedToken(customToken)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all ${
                   selectedToken.id === customToken.id
-                    ? 'border-blue-500 bg-blue-500/10'
+                    ? 'border-orange-500 bg-orange-500/10'
                     : 'border-white/20 bg-white/5 hover:border-white/30'
                 }`}
               >
@@ -221,7 +221,7 @@ export default function PredictionMarket() {
                     <h3 className="font-semibold text-lg">{customToken.name}</h3>
                     <p className="text-gray-400">${customToken.symbol}</p>
                     {customToken.contractAddress && (
-                      <p className="text-xs text-blue-400 mt-1">
+                      <p className="text-xs text-orange-400 mt-1">
                         {customToken.contractAddress.substring(0, 10)}...
                       </p>
                     )}
@@ -235,7 +235,7 @@ export default function PredictionMarket() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">Volume: ${customToken.totalVolume}</span>
-                  <span className="text-blue-400 font-medium">Custom Market</span>
+                  <span className="text-orange-400 font-medium">Custom Market</span>
                 </div>
               </div>
             )}
@@ -245,7 +245,7 @@ export default function PredictionMarket() {
                 onClick={() => setSelectedToken(token)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all ${
                   selectedToken.id === token.id
-                    ? 'border-purple-500 bg-purple-500/10'
+                    ? 'border-orange-500 bg-orange-500/10'
                     : 'border-white/20 bg-white/5 hover:border-white/30'
                 }`}
               >
@@ -345,14 +345,14 @@ export default function PredictionMarket() {
                     value={betAmount}
                     onChange={(e) => setBetAmount(e.target.value)}
                     placeholder="Enter amount"
-                    className="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:border-purple-500 focus:outline-none"
+                    className="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:border-orange-500 focus:outline-none"
                   />
                 </div>
 
                 {betAmount && (
-                  <div className="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg">
+                  <div className="p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
                     <div className="text-sm text-gray-400">Potential Payout</div>
-                    <div className="text-xl font-bold text-purple-400">
+                    <div className="text-xl font-bold text-orange-400">
                       ${(parseFloat(betAmount) * selectedToken.predictions[selectedPrediction as keyof typeof selectedToken.predictions].odds).toFixed(2)}
                     </div>
                   </div>
@@ -361,7 +361,7 @@ export default function PredictionMarket() {
                 <button
                   onClick={placeBet}
                   disabled={!betAmount}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-all"
+                  className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-all"
                 >
                   Place Bet
                 </button>
@@ -392,6 +392,20 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
