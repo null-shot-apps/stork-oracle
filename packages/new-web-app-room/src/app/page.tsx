@@ -150,7 +150,7 @@ export default function PredictionMarket() {
                 >
                   Sign Out
                 </button>
-                <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-medium transition-colors">
+                <button className="bg-[#3898ec] hover:bg-[#2d78c8] px-4 py-2 rounded-lg font-medium transition-colors">
                   Connect Wallet
                 </button>
               </div>
@@ -181,7 +181,7 @@ export default function PredictionMarket() {
               <button
                 onClick={handleCustomTokenSubmit}
                 disabled={!customTokenInput.trim()}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-medium transition-all"
+                className="bg-gradient-to-r from-[#3898ec] to-[#2d78c8] hover:from-[#2d78c8] hover:to-[#2563a0] disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-medium transition-all"
               >
                 Create Market
               </button>
@@ -221,7 +221,7 @@ export default function PredictionMarket() {
                     <h3 className="font-semibold text-lg">{customToken.name}</h3>
                     <p className="text-gray-400">${customToken.symbol}</p>
                     {customToken.contractAddress && (
-                      <p className="text-xs text-blue-400 mt-1">
+                      <p className="text-xs text-[#3898ec] mt-1">
                         {customToken.contractAddress.substring(0, 10)}...
                       </p>
                     )}
@@ -235,7 +235,7 @@ export default function PredictionMarket() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">Volume: ${customToken.totalVolume}</span>
-                  <span className="text-blue-400 font-medium">Custom Market</span>
+                  <span className="text-[#3898ec] font-medium">Custom Market</span>
                 </div>
               </div>
             )}
@@ -361,7 +361,7 @@ export default function PredictionMarket() {
                 <button
                   onClick={placeBet}
                   disabled={!betAmount}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-all"
+                  className="w-full bg-gradient-to-r from-[#3898ec] to-[#2d78c8] hover:from-[#2d78c8] hover:to-[#2563a0] disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-all"
                 >
                   Place Bet
                 </button>
@@ -392,6 +392,11 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
+
 
 
 
