@@ -41,6 +41,7 @@ const mockTokens = [
 export default function PredictionMarket() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<{email: string, username: string} | null>(null);
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [selectedToken, setSelectedToken] = useState(mockTokens[0]);
   const [selectedPrediction, setSelectedPrediction] = useState<string | null>(null);
   const [betAmount, setBetAmount] = useState('');
@@ -57,17 +58,46 @@ export default function PredictionMarket() {
     }
   }, []);
 
-  const handleSignUp = (email: string, username: string) => {
-    const userData = { email, username, joinedAt: new Date().toISOString() };
-    localStorage.setItem('stork_user', JSON.stringify(userData));
-    setUser(userData);
-    setIsAuthenticated(true);
-  };
+
 
   const handleSignOut = () => {
     localStorage.removeItem('stork_user');
     setUser(null);
     setIsAuthenticated(false);
+  };
+
+  const handleDiscordSignIn = () => {
+    setIsSigningIn(true);
+    // Simulate Discord OAuth flow
+    setTimeout(() => {
+      const userData = { 
+        email: 'user@discord.com', 
+        username: 'DiscordUser' + Math.floor(Math.random() * 1000), 
+        joinedAt: new Date().toISOString(),
+        provider: 'discord'
+      };
+      localStorage.setItem('stork_user', JSON.stringify(userData));
+      setUser(userData);
+      setIsAuthenticated(true);
+      setIsSigningIn(false);
+    }, 2000);
+  };
+
+  const handleGoogleSignIn = () => {
+    setIsSigningIn(true);
+    // Simulate Google OAuth flow
+    setTimeout(() => {
+      const userData = { 
+        email: 'user@gmail.com', 
+        username: 'GoogleUser' + Math.floor(Math.random() * 1000), 
+        joinedAt: new Date().toISOString(),
+        provider: 'google'
+      };
+      localStorage.setItem('stork_user', JSON.stringify(userData));
+      setUser(userData);
+      setIsAuthenticated(true);
+      setIsSigningIn(false);
+    }, 2000);
   };
 
   const formatTimeRemaining = (launchTime: Date) => {
@@ -123,7 +153,7 @@ export default function PredictionMarket() {
 
   // Show sign-up form if not authenticated
   if (!isAuthenticated) {
-    return <SignUp onSignUp={handleSignUp} />;
+    return <SignUp onDiscordSignIn={handleDiscordSignIn} onGoogleSignIn={handleGoogleSignIn} />;
   }
 
   return (
@@ -392,6 +422,10 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
 
 
 
