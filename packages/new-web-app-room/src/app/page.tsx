@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import LiveChart from '../components/LiveChart';
 import RecentBets from '../components/RecentBets';
 import Leaderboard from '../components/Leaderboard';
+import SignUp from '../components/SignUp';
 
 // Mock data for active token launches
 const mockTokens = [
@@ -38,11 +39,36 @@ const mockTokens = [
 ];
 
 export default function PredictionMarket() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<{email: string, username: string} | null>(null);
   const [selectedToken, setSelectedToken] = useState(mockTokens[0]);
   const [selectedPrediction, setSelectedPrediction] = useState<string | null>(null);
   const [betAmount, setBetAmount] = useState('');
   const [customTokenInput, setCustomTokenInput] = useState('');
   const [customToken, setCustomToken] = useState<any>(null);
+
+  // Check for existing user session on component mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem('stork_user');
+    if (savedUser) {
+      const userData = JSON.parse(savedUser);
+      setUser(userData);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleSignUp = (email: string, username: string) => {
+    const userData = { email, username, joinedAt: new Date().toISOString() };
+    localStorage.setItem('stork_user', JSON.stringify(userData));
+    setUser(userData);
+    setIsAuthenticated(true);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('stork_user');
+    setUser(null);
+    setIsAuthenticated(false);
+  };
 
   const formatTimeRemaining = (launchTime: Date) => {
     const now = new Date();
@@ -95,6 +121,11 @@ export default function PredictionMarket() {
     setCustomTokenInput('');
   };
 
+  // Show sign-up form if not authenticated
+  if (!isAuthenticated) {
+    return <SignUp onSignUp={handleSignUp} />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Header */}
@@ -108,9 +139,21 @@ export default function PredictionMarket() {
               <div className="text-sm text-gray-300">
                 Powered by Stork Oracle
               </div>
-              <button className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-medium transition-colors">
-                Connect Wallet
-              </button>
+              <div className="flex items-center gap-3">
+                <div className="text-sm">
+                  <span className="text-gray-400">Welcome,</span>
+                  <span className="text-white font-medium ml-1">{user?.username}</span>
+                </div>
+                <button 
+                  onClick={handleSignOut}
+                  className="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Sign Out
+                </button>
+                <button className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-medium transition-colors">
+                  Connect Wallet
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -349,6 +392,11 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
+
 
 
 
