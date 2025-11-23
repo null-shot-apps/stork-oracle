@@ -52,16 +52,16 @@ export default function SignUp({ onSignUp }: SignUpProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-900 via-amber-900 to-orange-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center p-4">
       <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/20">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Stork Oracle</h1>
-          <p className="text-orange-200">Token Launch Prediction Market</p>
+          <p className="text-blue-200">Token Launch Prediction Market</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -75,7 +75,7 @@ export default function SignUp({ onSignUp }: SignUpProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your.email@gmail.com"
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             />
             {errors.email && (
@@ -93,13 +93,13 @@ export default function SignUp({ onSignUp }: SignUpProps) {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="your_username"
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             />
             {errors.username && (
               <p className="mt-1 text-sm text-red-400">{errors.username}</p>
             )}
-            <p className="mt-1 text-xs text-orange-200">
+            <p className="mt-1 text-xs text-blue-200">
               3-20 characters, letters, numbers, and underscore only
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function SignUp({ onSignUp }: SignUpProps) {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-orange-600 to-amber-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-700 hover:to-amber-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
@@ -121,19 +121,19 @@ export default function SignUp({ onSignUp }: SignUpProps) {
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-orange-200">
+          <p className="text-xs text-blue-200">
             By signing up, you agree to our Terms of Service and Privacy Policy
           </p>
         </div>
 
         <div className="mt-8 text-center">
-          <div className="flex items-center justify-center space-x-4 text-sm text-orange-200">
+          <div className="flex items-center justify-center space-x-4 text-sm text-blue-200">
             <div className="flex items-center">
               <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
               Real-time predictions
             </div>
             <div className="flex items-center">
-              <div className="w-2 h-2 bg-orange-400 rounded-full mr-2"></div>
+              <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
               Stork Oracle powered
             </div>
           </div>
@@ -142,6 +142,16 @@ export default function SignUp({ onSignUp }: SignUpProps) {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
