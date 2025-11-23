@@ -41,6 +41,8 @@ export default function PredictionMarket() {
   const [selectedToken, setSelectedToken] = useState(mockTokens[0]);
   const [selectedPrediction, setSelectedPrediction] = useState<string | null>(null);
   const [betAmount, setBetAmount] = useState('');
+  const [customTokenInput, setCustomTokenInput] = useState('');
+  const [customToken, setCustomToken] = useState<any>(null);
 
   const formatTimeRemaining = (launchTime: Date) => {
     const now = new Date();
@@ -67,6 +69,32 @@ export default function PredictionMarket() {
     setSelectedPrediction(null);
   };
 
+  const handleCustomTokenSubmit = () => {
+    if (!customTokenInput.trim()) return;
+    
+    // Create a new token object from the input
+    const newCustomToken = {
+      id: 999,
+      name: customTokenInput.length > 20 ? customTokenInput.substring(0, 20) + '...' : customTokenInput,
+      symbol: customTokenInput.startsWith('0x') ? 'CUSTOM' : customTokenInput.toUpperCase(),
+      contractAddress: customTokenInput.startsWith('0x') ? customTokenInput : null,
+      launchTime: new Date(Date.now() + 60 * 60 * 1000), // 1 hour from now
+      currentPrice: 0.0,
+      predictions: {
+        under1: { odds: 2.5, volume: 0 },
+        between1to5: { odds: 3.0, volume: 0 },
+        between5to10: { odds: 4.0, volume: 0 },
+        over10: { odds: 6.0, volume: 0 }
+      },
+      totalVolume: 0,
+      isCustom: true
+    };
+    
+    setCustomToken(newCustomToken);
+    setSelectedToken(newCustomToken);
+    setCustomTokenInput('');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
       {/* Header */}
@@ -89,10 +117,85 @@ export default function PredictionMarket() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Custom Token Input */}
+        <div className="mb-8">
+          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Create Prediction Market
+            </h2>
+            <p className="text-gray-300 mb-4">
+              Enter a token contract address or symbol to create a new prediction market
+            </p>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={customTokenInput}
+                onChange={(e) => setCustomTokenInput(e.target.value)}
+                placeholder="0x... contract address or token symbol (e.g., PEPE, DOGE)"
+                className="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                onKeyPress={(e) => e.key === 'Enter' && handleCustomTokenSubmit()}
+              />
+              <button
+                onClick={handleCustomTokenSubmit}
+                disabled={!customTokenInput.trim()}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-medium transition-all"
+              >
+                Create Market
+              </button>
+            </div>
+            {customToken && (
+              <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                <p className="text-green-400 text-sm">
+                  ✅ Market created for {customToken.name} 
+                  {customToken.contractAddress && (
+                    <span className="text-gray-400"> ({customToken.contractAddress.substring(0, 8)}...)</span>
+                  )}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Token Selection */}
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Active Token Launches</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h2 className="text-xl font-semibold mb-4">
+            {customToken ? 'Your Markets & Active Launches' : 'Active Token Launches'}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Include custom token if it exists */}
+            {customToken && (
+              <div
+                key={customToken.id}
+                onClick={() => setSelectedToken(customToken)}
+                className={`p-4 rounded-xl border cursor-pointer transition-all ${
+                  selectedToken.id === customToken.id
+                    ? 'border-blue-500 bg-blue-500/10'
+                    : 'border-white/20 bg-white/5 hover:border-white/30'
+                }`}
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h3 className="font-semibold text-lg">{customToken.name}</h3>
+                    <p className="text-gray-400">${customToken.symbol}</p>
+                    {customToken.contractAddress && (
+                      <p className="text-xs text-blue-400 mt-1">
+                        {customToken.contractAddress.substring(0, 10)}...
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm text-gray-400">Launches in</div>
+                    <div className="font-mono text-lg text-green-400">
+                      {formatTimeRemaining(customToken.launchTime)}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Volume: ${customToken.totalVolume}</span>
+                  <span className="text-blue-400 font-medium">Custom Market</span>
+                </div>
+              </div>
+            )}
             {mockTokens.map((token) => (
               <div
                 key={token.id}
@@ -246,6 +349,11 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
+
 
 
 
