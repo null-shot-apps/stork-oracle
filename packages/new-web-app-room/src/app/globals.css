@@ -10,6 +10,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Stork Network Brand Colors */
+  --color-stork-blue: #3898ec;
+  --color-stork-blue-dark: #2d78c8;
+  --color-stork-blue-light: #5ba8f0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -148,6 +153,7 @@ body {
 .animate-bounce-horizontal {
   animation: bounce-horizontal 1.5s ease-in-out infinite;
 }
+
 
 
 

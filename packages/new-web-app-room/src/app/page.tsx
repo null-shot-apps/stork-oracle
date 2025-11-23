@@ -132,7 +132,7 @@ export default function PredictionMarket() {
       <header className="border-b border-white/10 bg-black/20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#3898ec] to-[#2d78c8] bg-clip-text text-transparent">
               Token Launch Predictions
             </h1>
             <div className="flex items-center gap-4">
@@ -163,7 +163,7 @@ export default function PredictionMarket() {
         {/* Custom Token Input */}
         <div className="mb-8">
           <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+            <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-[#3898ec] to-[#2d78c8] bg-clip-text text-transparent">
               Create Prediction Market
             </h2>
             <p className="text-gray-300 mb-4">
@@ -175,7 +175,7 @@ export default function PredictionMarket() {
                 value={customTokenInput}
                 onChange={(e) => setCustomTokenInput(e.target.value)}
                 placeholder="0x... contract address or token symbol (e.g., PEPE, DOGE)"
-                className="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#3898ec] focus:ring-1 focus:ring-[#3898ec]"
                 onKeyPress={(e) => e.key === 'Enter' && handleCustomTokenSubmit()}
               />
               <button
@@ -212,7 +212,7 @@ export default function PredictionMarket() {
                 onClick={() => setSelectedToken(customToken)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all ${
                   selectedToken.id === customToken.id
-                    ? 'border-blue-500 bg-blue-500/10'
+                    ? 'border-[#3898ec] bg-[#3898ec]/10'
                     : 'border-white/20 bg-white/5 hover:border-white/30'
                 }`}
               >
@@ -245,7 +245,7 @@ export default function PredictionMarket() {
                 onClick={() => setSelectedToken(token)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all ${
                   selectedToken.id === token.id
-                    ? 'border-blue-500 bg-blue-500/10'
+                    ? 'border-[#3898ec] bg-[#3898ec]/10'
                     : 'border-white/20 bg-white/5 hover:border-white/30'
                 }`}
               >
@@ -345,14 +345,14 @@ export default function PredictionMarket() {
                     value={betAmount}
                     onChange={(e) => setBetAmount(e.target.value)}
                     placeholder="Enter amount"
-                    className="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:border-blue-500 focus:outline-none"
+                    className="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:border-[#3898ec] focus:outline-none"
                   />
                 </div>
 
                 {betAmount && (
-                  <div className="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                  <div className="p-3 bg-[#3898ec]/10 border border-[#3898ec]/30 rounded-lg">
                     <div className="text-sm text-gray-400">Potential Payout</div>
-                    <div className="text-xl font-bold text-blue-400">
+                    <div className="text-xl font-bold text-[#3898ec]">
                       ${(parseFloat(betAmount) * selectedToken.predictions[selectedPrediction as keyof typeof selectedToken.predictions].odds).toFixed(2)}
                     </div>
                   </div>
@@ -392,6 +392,13 @@ export default function PredictionMarket() {
     </div>
   );
 }
+
+
+
+
+
+
+
 
 
 

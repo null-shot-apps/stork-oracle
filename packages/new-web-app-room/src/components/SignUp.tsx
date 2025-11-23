@@ -52,16 +52,16 @@ export default function SignUp({ onSignUp }: SignUpProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a2332] via-[#2d78c8] to-[#1a2332] flex items-center justify-center p-4">
       <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/20">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-gradient-to-r from-[#3898ec] to-[#2d78c8] rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Stork Oracle</h1>
-          <p className="text-blue-200">Token Launch Prediction Market</p>
+          <p className="text-[#5ba8f0]">Token Launch Prediction Market</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -99,7 +99,7 @@ export default function SignUp({ onSignUp }: SignUpProps) {
             {errors.username && (
               <p className="mt-1 text-sm text-red-400">{errors.username}</p>
             )}
-            <p className="mt-1 text-xs text-blue-200">
+            <p className="mt-1 text-xs text-[#5ba8f0]">
               3-20 characters, letters, numbers, and underscore only
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function SignUp({ onSignUp }: SignUpProps) {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-[#2d78c8] to-[#1f5a9e] text-white py-3 px-6 rounded-lg font-semibold hover:from-[#1f5a9e] hover:to-[#1a4d85] focus:outline-none focus:ring-2 focus:ring-[#3898ec] focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
@@ -121,19 +121,19 @@ export default function SignUp({ onSignUp }: SignUpProps) {
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-blue-200">
+          <p className="text-xs text-[#5ba8f0]">
             By signing up, you agree to our Terms of Service and Privacy Policy
           </p>
         </div>
 
         <div className="mt-8 text-center">
-          <div className="flex items-center justify-center space-x-4 text-sm text-blue-200">
+          <div className="flex items-center justify-center space-x-4 text-sm text-[#5ba8f0]">
             <div className="flex items-center">
               <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
               Real-time predictions
             </div>
             <div className="flex items-center">
-              <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+              <div className="w-2 h-2 bg-[#3898ec] rounded-full mr-2"></div>
               Stork Oracle powered
             </div>
           </div>
@@ -142,6 +142,14 @@ export default function SignUp({ onSignUp }: SignUpProps) {
     </div>
   );
 }
+
+
+
+
+
+
+
+
 
 
 
